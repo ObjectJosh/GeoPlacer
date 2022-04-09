@@ -5,9 +5,9 @@ app.use(express.json({ extended: false }));
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static(__dirname + '/public'));
 
-require('./server/database');
-const squares = require('./server/routes/squares');
-app.use('/squares', squares);
+// require('./server/database');
+// const squares = require('./server/routes/squares');
+// app.use('/squares', squares);
 
 const PORT  = process.env.PORT || 8080;
 
