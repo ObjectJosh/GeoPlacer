@@ -8,6 +8,7 @@ import {
     Link
 } from '@mui/material';
 
+import Colors from './components/Colors';
 import earthImage from './img/earth.png';
 
 
@@ -15,6 +16,17 @@ function App() {
     const descriptionRef = useRef(null);
 
 
+    const [colorIndex, setColorIndex] = useState(0);
+
+    const [squares, setSquares] = useState([]);
+    const colors = [
+        '#000000',
+        '#FF0000',
+        '#00FF00',
+        '#0000FF',
+        '#FFFFFF',
+    ]
+    
     const styles = {
         mainContainer: {
             justifyContent: 'center',
@@ -40,6 +52,7 @@ function App() {
     return (
         <Container sx={styles.mainContainer}>
             <Typography variant='h2' sx={styles.header}>Welcome to GeoPlacer</Typography>
+            <Colors colors={colors} colorIndex={colorIndex} setColorIndex={setColorIndex} />
             <Link onClick={executeScroll} sx={{ '&:hover:': { cursor: 'pointer' }, mt: '2rem' }}>
                 <Typography variant='h5' sx={{ mb: '2rem' }}>
                     How to play
