@@ -43,6 +43,7 @@ function MyMapComponent({ squares, selectedColor, handleGetSquares }) {
     const [position, setPosition] = useState(null);
     const [positionDisabled, setPositionDisabled] = useState(false);
     const [squaresArr, setSquaresArr] = useState(generateSquareArray(15));
+    const [inRange, setInRange] = useState(false)
 
     function generateSquareArray(dim) {
         return JSON.parse(JSON.stringify(Array(dim).fill(Array(dim).fill(0))));
@@ -53,8 +54,8 @@ function MyMapComponent({ squares, selectedColor, handleGetSquares }) {
     }
 
     function handleAddSquare() {
-        console.log((position.longitude - TOPLEFT_LONG) / SQUARE_DIM,
-            (TOPLEFT_LAT - position.latitude) / SQUARE_DIM);
+        // console.log((position.longitude - TOPLEFT_LONG) / SQUARE_DIM,
+        //     (TOPLEFT_LAT - position.latitude) / SQUARE_DIM);
         async function blockingAddSquare() {
             await addSquare({
                 x: Math.floor((position.longitude - TOPLEFT_LONG) / SQUARE_DIM),
@@ -64,6 +65,15 @@ function MyMapComponent({ squares, selectedColor, handleGetSquares }) {
             await handleGetSquares();
         }
         blockingAddSquare()
+    }
+
+    function userInRange() {
+        if (position) {
+            var x = (position.longitude - TOPLEFT_LONG) / SQUARE_DIM;
+            var y = (TOPLEFT_LAT - position.latitude) / SQUARE_DIM
+            return x >= 0 && x < GRID_DIM && y >= 0 && y < GRID_DIM;
+        }
+        return false
     }
 
     function getLocation() {
@@ -76,7 +86,7 @@ function MyMapComponent({ squares, selectedColor, handleGetSquares }) {
     }
 
     function addRectangle(map, color, opacity, showBorders, x, y, bounds) {
-        console.log(bounds)
+        // console.log(bounds)
         const rectangle = new window.google.maps.Rectangle({
             strokeColor: color,
             strokeOpacity: showBorders ? 1 : 0,
@@ -143,6 +153,10 @@ function MyMapComponent({ squares, selectedColor, handleGetSquares }) {
 
     curLocMarker?.setPosition({ lat: position?.latitude, lng: position?.longitude })
 
+    useEffect(() => {
+        setInRange(userInRange())
+    }, [position]);
+
     const styles = {
         redbutton: {
             width: '15rem',
@@ -153,7 +167,7 @@ function MyMapComponent({ squares, selectedColor, handleGetSquares }) {
     return (
         <>
             <div ref={ref} style={{ width: "100%", height: "100%" }} />
-            <Button variant='outlined' sx={styles.redbutton} onClick={() => handleAddSquare()}>Add Square</Button>
+            <Button variant='outlined' sx={styles.redbutton} onClick={() => handleAddSquare()} disabled={!inRange}>Add Square</Button>
         </>
     );
 
