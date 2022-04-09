@@ -37,6 +37,7 @@
     "react-google-autocomplete": "^2.6.1",
     "react-google-maps": "^9.4.5",
     "sequelize": "^6.18.0",
+    "serve-favicon": "^2.5.0",
     "uuid": "^8.3.2"
   },
   "devDependencies": {
