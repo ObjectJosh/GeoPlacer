@@ -32,16 +32,17 @@ function App() {
     // const [color, setColor] = useState()
     const descriptionRef = useRef(null);
 
+    async function handleGetSquares() {
+        setSquares(await getSquares());
+        setTimeout(handleGetSquares, 5000);
+    }
+
     useEffect(() => {
-        async function handleGetSquares() {
-            setSquares(await getSquares());
-            // setTimeout(handleGetSquares, 5000);
-        }
         handleGetSquares();
     }, []);
 
     const executeScroll = () => descriptionRef.current.scrollIntoView();
-    
+
     const styles = {
         mainContainer: {
             justifyContent: 'center',
@@ -73,7 +74,7 @@ function App() {
                     How to play
                 </Typography>
             </Link>
-            <Map squares={squares} selectedColor={colors[colorIndex]} />
+            <Map squares={squares} selectedColor={colors[colorIndex]} handleGetSquares={handleGetSquares} />
             <Colors colors={colors} colorIndex={colorIndex} setColorIndex={setColorIndex} />
             <Box sx={{ position: 'relative', mt: '8rem' }}>
                 <img alt='world' src={earthImage} style={{ position: 'absolute', width: '80%', height: 'auto', transform: 'translate(-50%, -20%)', opacity: 0.8, zIndex: -5 }} />
