@@ -45,6 +45,7 @@ function App() {
                     How to play
                 </Typography>
             </Link>
+            <Map />
             <Box sx={{ position: 'relative', mt: '8rem' }}>
                 <img alt='world' src={earthImage} style={{ position: 'absolute', width: '80%', height: 'auto', transform: 'translate(-50%, -20%)', opacity: 0.8, zIndex: -5 }} />
                 <Typography variant='h4' ref={descriptionRef} sx={{ mb: '1rem', fontWeight: '700' }}>
