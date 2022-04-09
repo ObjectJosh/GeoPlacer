@@ -11,6 +11,7 @@ import {
 // import Map from './components/Map';
 // import Colors from './components/Colors';
 import { getSquares } from './api/square';
+import Colors from './components/Colors';
 import earthImage from './img/earth.png';
 
 
@@ -43,6 +44,17 @@ function App() {
     const executeScroll = () => descriptionRef.current.scrollIntoView();
 
 
+    const [colorIndex, setColorIndex] = useState(0);
+
+    const [squares, setSquares] = useState([]);
+    const colors = [
+        '#000000',
+        '#FF0000',
+        '#00FF00',
+        '#0000FF',
+        '#FFFFFF',
+    ]
+    
     const styles = {
         mainContainer: {
             justifyContent: 'center',
@@ -68,13 +80,14 @@ function App() {
     return (
         <Container sx={styles.mainContainer}>
             <Typography variant='h2' sx={styles.header}>Welcome to GeoPlacer</Typography>
+            <Colors colors={colors} colorIndex={colorIndex} setColorIndex={setColorIndex} />
             <Link onClick={executeScroll} sx={{ '&:hover:': { cursor: 'pointer' }, mt: '2rem' }}>
                 <Typography variant='h5' sx={{ mb: '2rem' }}>
                     How to play
                 </Typography>
             </Link>
-            {/* <Map squares={squares} selectedColor={colors[colorIndex]} /> */}
-            {/* <Colors colors={colors} colorIndex={colorIndex} setColorIndex={setColorIndex} /> */}
+            <Map squares={squares} selectedColor={colors[colorIndex]} />
+            <Colors colors={colors} colorIndex={colorIndex} setColorIndex={setColorIndex} />
             <Box sx={{ position: 'relative', mt: '8rem' }}>
                 <img alt='world' src={earthImage} style={{ position: 'absolute', width: '80%', height: 'auto', transform: 'translate(-50%, -20%)', opacity: 0.8, zIndex: -5 }} />
                 <Typography variant='h4' ref={descriptionRef} sx={{ mb: '1rem', fontWeight: '700' }}>
