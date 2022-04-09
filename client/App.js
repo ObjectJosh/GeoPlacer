@@ -8,8 +8,7 @@ import {
     Link
 } from '@mui/material';
 
-// import Map from './components/Map';
-// import Colors from './components/Colors';
+import Map from './components/Map';
 import { getSquares } from './api/square';
 import Colors from './components/Colors';
 import earthImage from './img/earth.png';
@@ -42,18 +41,6 @@ function App() {
     }, []);
 
     const executeScroll = () => descriptionRef.current.scrollIntoView();
-
-
-    const [colorIndex, setColorIndex] = useState(0);
-
-    const [squares, setSquares] = useState([]);
-    const colors = [
-        '#000000',
-        '#FF0000',
-        '#00FF00',
-        '#0000FF',
-        '#FFFFFF',
-    ]
     
     const styles = {
         mainContainer: {
