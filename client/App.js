@@ -8,12 +8,40 @@ import {
     Link
 } from '@mui/material';
 
+// import Map from './components/Map';
+// import Colors from './components/Colors';
+import { getSquares } from './api/square';
 import Colors from './components/Colors';
 import earthImage from './img/earth.png';
 
 
 function App() {
+    /* const render = (status) => {
+        if (status === Status.FAILURE) return <ErrorComponent />;
+        return <CircularProgress />;
+    }; */
+    // const counter = [1];
+    const [squares, setSquares] = useState([]);
+    const colors = [
+        '#000000',
+        '#FF0000',
+        '#00FF00',
+        '#0000FF',
+        '#FFFFFF',
+    ]
+    const [colorIndex, setColorIndex] = useState(0);
+    // const [color, setColor] = useState()
     const descriptionRef = useRef(null);
+
+    useEffect(() => {
+        async function handleGetSquares() {
+            setSquares(await getSquares());
+            // setTimeout(handleGetSquares, 5000);
+        }
+        handleGetSquares();
+    }, []);
+
+    const executeScroll = () => descriptionRef.current.scrollIntoView();
 
 
     const [colorIndex, setColorIndex] = useState(0);
@@ -58,7 +86,8 @@ function App() {
                     How to play
                 </Typography>
             </Link>
-            <Map />
+            <Map squares={squares} selectedColor={colors[colorIndex]} />
+            <Colors colors={colors} colorIndex={colorIndex} setColorIndex={setColorIndex} />
             <Box sx={{ position: 'relative', mt: '8rem' }}>
                 <img alt='world' src={earthImage} style={{ position: 'absolute', width: '80%', height: 'auto', transform: 'translate(-50%, -20%)', opacity: 0.8, zIndex: -5 }} />
                 <Typography variant='h4' ref={descriptionRef} sx={{ mb: '1rem', fontWeight: '700' }}>

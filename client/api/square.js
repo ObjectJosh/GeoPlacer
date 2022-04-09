@@ -1,0 +1,53 @@
+/**
+ * 
+ * @param {*} data_json 
+ * @returns 
+ */
+export const addSquare = async (data_json) => {
+    return await fetch('squares/add', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data_json)
+    })
+    .then(async (res) => {
+        let data = await res.json()
+        if (res.status === 200) {
+            window.console.log("Successfully added square");
+            return data;
+        } else {
+            console.error("Error adding square: ", data.msg)
+            return {err: data.msg}
+        }
+    })
+    .catch(err => {
+        console.error("Error creating square")
+        console.error(err)
+        return {err: "Error creating square"}
+    })
+}
+
+export const getSquares = async () => {
+    return await fetch('squares/get', {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    })
+    .then(async (res) => {
+        let data = await res.json()
+        if (res.status === 200) {
+            window.console.log("Successfully retrieved squares");
+            return data;
+        } else {
+            console.error("Error retrieving squares: ", data.msg)
+            return {err: data.msg}
+        }
+    })
+    .catch(err => {
+        console.error("Error retrieving squares")
+        console.error(err)
+        return {err: "Error retrieving squares"}
+    })
+}
