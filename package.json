@@ -50,6 +50,7 @@
     "@babel/runtime": "^7.9.2",
     "babel-loader": "^8.2.4",
     "concurrently": "^4.1.0",
+    "dotenv-webpack": "^7.1.0",
     "file-loader": "^6.2.0",
     "nodemon": "^2.0.2",
     "webpack": "^4.46.0",
