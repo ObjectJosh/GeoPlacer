@@ -39,7 +39,7 @@ const Map = ({ squares, selectedColor, handleGetSquares }) => {
                 height: "600px",
             }}
         >
-            <Wrapper apiKey={process.env.REACT_APP_GOOGLE_MAPS_API_KEY} render={render}>
+            <Wrapper apiKey={API_KEY} render={render}>
                 <MyMapComponent squares={squares} selectedColor={selectedColor}
                     handleGetSquares={handleGetSquares} />
             </Wrapper>
