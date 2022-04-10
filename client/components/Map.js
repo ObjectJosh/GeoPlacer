@@ -13,10 +13,15 @@ import {
 } from '@mui/material';
 
 console.log(process.env)
-const TOPLEFT_LAT = parseFloat(process.env.REACT_APP_TOPLEFT_LAT)
-const TOPLEFT_LONG = parseFloat(process.env.REACT_APP_TOPLEFT_LONG)
-const SQUARE_DIM = parseFloat(process.env.REACT_APP_SQUARE_DIM)
-const GRID_DIM = parseInt(process.env.REACT_APP_GRID_DIM)
+// const TOPLEFT_LAT = parseFloat(process.env.REACT_APP_TOPLEFT_LAT)
+// const TOPLEFT_LONG = parseFloat(process.env.REACT_APP_TOPLEFT_LONG)
+// const SQUARE_DIM = parseFloat(process.env.REACT_APP_SQUARE_DIM)
+// const GRID_DIM = parseInt(process.env.REACT_APP_GRID_DIM)
+const TOPLEFT_LAT = 35.303545
+const TOPLEFT_LONG = -120.666757
+const SQUARE_DIM = 0.0004
+const GRID_DIM = 15
+const API_KEY = "AIzaSyBwgO_6-Gl4DsVQxX-w9UQuYJmCqK4LHpM"
 
 
 const render = (status) => {
