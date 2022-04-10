@@ -27,6 +27,8 @@ app.use(favicon(__dirname + '/public/favicon.ico'));
 require('./server/database');
 const squares = require('./server/routes/squares');
 app.use('/squares', squares);
+const users = require('./server/routes/users');
+app.use('/users', users);
 
 const PATH = 'http://localhost:8080';
 // const PATH = 'https://geoplacer.herokuapp.com';
@@ -45,7 +47,8 @@ io.on("connection", (socket) => {
     socket.join(data);
     console.log(`User with ID: ${socket.id} joined room: ${data}`);
     count++
-    console.log("count: " + count)
+    console.log("count: " + count);
+    socket.emit('count', count);
   });
 
   socket.on("send_message", (data) => {
@@ -55,8 +58,10 @@ io.on("connection", (socket) => {
   socket.on("disconnect", () => {
     console.log("User Disconnected", socket.id);
     count--;
+    socket.emit('count', count);
   });
 });
+
 
 const PORT = process.env.PORT || 8080;
 

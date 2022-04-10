@@ -8,6 +8,8 @@ import {
     Link
 } from '@mui/material';
 
+import { useUser } from './UserProvider';
+
 import Map from './components/Map';
 import User from './components/User';
 import { getSquares } from './api/square';
@@ -15,11 +17,13 @@ import Colors from './components/Colors';
 import earthImage from './img/earth.png';
 
 
+
 function App() {
-    const [showChat, setShowChat] = useState(false);
+    const { currentUser, displayChat } = useUser();
+    // const [showChat, setShowChat] = useState(false);
+    const [onlineUsers, setOnlineUsers] = useState(0);
     // const [username, setUsername] = useState("");
     // const [room, setRoom] = useState("");
-    // const [showChat, setShowChat] = useState(false);
 
     const [squares, setSquares] = useState([]);
     const colors = [
@@ -68,19 +72,29 @@ function App() {
 
     const renderLogin = () => {
         return (
-            <User showChat={showChat} setShowChat={setShowChat} />
+            <User setOnlineUsers={setOnlineUsers} />
         )
+    }
+
+    const renderOnlineUsers = () => {
+        return (
+            <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+                <Box sx={{ width: '1rem', height: '1rem', borderRadius: '50%', backgroundColor: '#00c403', transform: 'translate(0rem, 0.3rem)', mr: '0.3rem' }}/>
+                <Typography>{`${onlineUsers} User${onlineUsers === 1 ? '' : 's'} Currently Online`}</Typography>
+            </Box>
+        );
     }
 
     const renderBody = () => {
         return (
             <Box sx={{ position: 'relative' }}>
-                <Link onClick={executeScroll} sx={{ '&:hover:': { cursor: 'pointer' }, mt: '2rem' }}>
+                {/* <Link onClick={executeScroll} sx={{ '&:hover:': { cursor: 'pointer' }, mt: '2rem' }}>
                     <Typography variant='h5' sx={{ mb: '2rem' }}>
                         How to play
                     </Typography>
-                </Link>
+                </Link> */}
                 <Map squares={squares} selectedColor={colors[colorIndex]} handleGetSquares={handleGetSquares} />
+                {renderOnlineUsers()}
                 <Colors colors={colors} colorIndex={colorIndex} setColorIndex={setColorIndex} />
                 <Box sx={{ position: 'relative', mt: '8rem' }}>
                     <img alt='world' src={earthImage} style={{ position: 'absolute', width: '80%', height: 'auto', transform: 'translate(-50%, -20%)', opacity: 0.8, zIndex: -5 }} />
@@ -115,7 +129,7 @@ function App() {
                         r/Place
                     </Typography>
                 </Link>
-                {renderLogin()}
+                {/* {renderLogin()} */}
             </Box>
         );
     }
@@ -123,7 +137,11 @@ function App() {
     return (
         <Container sx={styles.mainContainer}>
             <Typography variant='h2' sx={styles.header}>Welcome to GeoPlacer</Typography>
-            {showChat ? renderBody() : renderLogin()}
+            {currentUser && <Typography variant='h5' sx={{ mb: '0rem', fontWeight: '700', fontSize: '2rem' }}>{`Hello, ${currentUser.id}!`}</Typography>}
+            {currentUser && <Typography variant='h5' sx={{ mb: '2rem' }}>{`Explore around the GeoWorld`}</Typography>}
+            {/* {renderBody()} */}
+            {displayChat ? renderBody() : null}
+            {renderLogin()}
         </Container>
     );
 };

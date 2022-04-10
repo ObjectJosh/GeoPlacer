@@ -9,7 +9,7 @@ import {
 } from '@mui/material';
 import SendIcon from '@mui/icons-material/Send';
 
-function Chat({ socket, username, room }) {
+function Chat({ socket, username, room, setOnlineUsers }) {
   const [currentMessage, setCurrentMessage] = useState("");
   const [messageList, setMessageList] = useState([]);
 
@@ -34,6 +34,13 @@ function Chat({ socket, username, room }) {
   useEffect(() => {
     socket.on("receive_message", (data) => {
       setMessageList((list) => [...list, data]);
+    });
+  }, [socket]);
+
+  useEffect(() => {
+    socket.on('count', (count) => {
+      console.log(count)
+      setOnlineUsers(count);
     });
   }, [socket]);
 
