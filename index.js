@@ -73,7 +73,7 @@ app.listen(PORT, () => {
   console.log(`App running on port ${PORT}`);
 });
 
-const CHATPORT = process.env.CHATPORT || 8080;
+const CHATPORT = process.env.CHATPORT || 80;
 
 server.listen(CHATPORT, () => {
   console.log(`Chat server running on port ${CHATPORT}`);
