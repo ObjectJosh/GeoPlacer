@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Wrapper, Status } from "@googlemaps/react-wrapper";
-import { addSquare } from '../api/square';
+import { addSquare, findSquares, updateSquare } from '../api/square';
 import {
     Container,
     Typography,
@@ -8,6 +8,7 @@ import {
     Slider,
     Box
 } from '@mui/material';
+
 
 const TOPLEFT_LAT = parseFloat(process.env.TOPLEFT_LAT)
 const TOPLEFT_LONG = parseFloat(process.env.TOPLEFT_LONG)
@@ -56,14 +57,26 @@ function MyMapComponent({ squares, selectedColor, handleGetSquares }) {
     }
 
     function handleAddSquare() {
-        // console.log((position.longitude - TOPLEFT_LONG) / SQUARE_DIM,
-        //     (TOPLEFT_LAT - position.latitude) / SQUARE_DIM);
         async function blockingAddSquare() {
-            await addSquare({
-                x: Math.floor((position.longitude - TOPLEFT_LONG) / SQUARE_DIM),
-                y: Math.floor((TOPLEFT_LAT - position.latitude) / SQUARE_DIM),
-                color: selectedColor,
-            })
+            let x = Math.floor((position.longitude - TOPLEFT_LONG) / SQUARE_DIM);
+            let y = Math.floor((TOPLEFT_LAT - position.latitude) / SQUARE_DIM);
+            let matches = await findSquares(`${x}-${y}`);
+            if (matches.length === 0) {
+                await addSquare({
+                    x: x,
+                    y: y,
+                    color: selectedColor,
+                    changed: 0
+                })
+            } else {
+                await updateSquare({
+                    id: matches[0].id,
+                    x: x,
+                    y: y,
+                    color: selectedColor,
+                    changed: matches[0].changed + 1
+                })
+            }
             await handleGetSquares();
         }
         blockingAddSquare()
@@ -88,7 +101,6 @@ function MyMapComponent({ squares, selectedColor, handleGetSquares }) {
     }
 
     function addRectangle(map, color, opacity, showBorders, x, y, bounds) {
-        // console.log(bounds)
         const rectangle = new window.google.maps.Rectangle({
             strokeColor: color,
             strokeOpacity: showBorders ? 1 : 0,
