@@ -13,13 +13,11 @@ import { getSquares } from './api/square';
 import Colors from './components/Colors';
 import earthImage from './img/earth.png';
 
-
 function App() {
-    /* const render = (status) => {
-        if (status === Status.FAILURE) return <ErrorComponent />;
-        return <CircularProgress />;
-    }; */
-    // const counter = [1];
+    const [username, setUsername] = useState("");
+    const [room, setRoom] = useState("");
+    const [showChat, setShowChat] = useState(false);
+
     const [squares, setSquares] = useState([]);
     const colors = [
         '#000000',
