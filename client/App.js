@@ -100,7 +100,7 @@ function App() {
                         Just have some fun!
                     </Typography>
                 </Box>
-                <Box sx={{ mt: '15rem' }}></Box>
+                <Box sx={{ mt: { sm: '10rem', md: '25rem' } }}></Box>
                 <Typography variant='body2' sx={{ mt: '10rem', fontSize: '1rem', fontWeight: '600' }}>
                     Built for your enjoyment by
                 </Typography>

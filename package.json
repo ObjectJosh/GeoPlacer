@@ -26,7 +26,9 @@
     "@emotion/react": "^11.8.2",
     "@emotion/styled": "^11.8.1",
     "@googlemaps/react-wrapper": "^1.1.29",
+    "@mui/icons-material": "^5.6.0",
     "@mui/material": "^5.5.3",
+    "css-loader": "^5.2.7",
     "dotenv": "^16.0.0",
     "express": "^4.17.3",
     "express-validator": "^6.14.0",
@@ -39,11 +41,10 @@
     "react-scroll-to-bottom": "^4.2.0",
     "sequelize": "^6.18.0",
     "serve-favicon": "^2.5.0",
-    "socket.io-client": "^4.4.1",
-    "uuid": "^8.3.2",
     "socket.io": "^4.4.1",
+    "socket.io-client": "^4.4.1",
     "style-loader": "^2.0.0",
-    "css-loader": "^5.2.7"
+    "uuid": "^8.3.2"
   },
   "devDependencies": {
     "@babel/core": "^7.9.0",

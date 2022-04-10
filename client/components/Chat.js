@@ -7,6 +7,7 @@ import {
   Button,
   Link,
 } from '@mui/material';
+import SendIcon from '@mui/icons-material/Send';
 
 function Chat({ socket, username, room }) {
   const [currentMessage, setCurrentMessage] = useState("");
@@ -43,9 +44,9 @@ function Chat({ socket, username, room }) {
   }
 
   return (
-    <Box className="chat-window" >
+    <Box className="chat-window" sx={{ pb: '1rem' }}>
       <div className="chat-header">
-        <p>Live Chat</p>
+        <p>World Chat</p>
       </div>
       <div className="chat-body">
 
@@ -73,11 +74,11 @@ function Chat({ socket, username, room }) {
 
       </div>
 
-      <div className="chat-footer">
+      <Box className="chat-footer" sx={{ backgroundColor: 'white' }}>
         <input
           type="text"
           value={currentMessage}
-          placeholder="Hey..."
+          placeholder="Type something..."
           onChange={(event) => {
             setCurrentMessage(event.target.value);
           }}
@@ -85,8 +86,8 @@ function Chat({ socket, username, room }) {
             event.key === "Enter" && sendMessage();
           }}
         />
-        <button onClick={sendMessage}>&#9658;</button>
-      </div>
+        <button onClick={sendMessage}><SendIcon /></button>
+      </Box>
 
       <div className="user_count">
       </div>

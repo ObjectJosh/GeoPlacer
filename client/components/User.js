@@ -10,7 +10,7 @@ import {
   Link,
 } from '@mui/material';
 
-const socket = io.connect(process.env.BACKEND_URL || "http://localhost:3001");
+const socket = io.connect('https://geoplacer.herokuapp.com:3001' || "http://localhost:3001");
 
 function User({ showChat, setShowChat }) {
   const [username, setUsername] = useState("");
