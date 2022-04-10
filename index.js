@@ -22,7 +22,7 @@ app.use('/squares', squares);
 /* Sockets */
 const io = new Server(server, {
     cors: {
-      origin: process.env.FRONTEND_URL,
+      origin: "https://geoplacer.herokuapp.com",
       methods: ["GET", "POST"],
     },
 });
