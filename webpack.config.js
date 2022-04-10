@@ -30,7 +30,14 @@ module.exports = {
         options: {
           name: '/public/icons/[name].[ext]'
         }
+      },
+      {
+        test: /\.css$/,
+        use: [
+          'style-loader',
+          'css-loader'
+        ]
       }
     ]
-  }
+  },
 };
