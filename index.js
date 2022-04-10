@@ -14,7 +14,7 @@ app.use((req, res, next) => {
 /* Sockets */
 const http = require("http");
 const cors = require("cors");
-const socket = require("socket.io");
+const { Server } = require("socket.io");
 app.use(cors());
 var count = 0;
 const server = http.createServer(app);
@@ -60,7 +60,7 @@ const server2 = express()
   .use((req, res) => res.sendFile(INDEX, { root: __dirname }))
   .listen(CHATPORT, () => console.log(`Listening on ${CHATPORT}`));
 
-const io = socketIO(server2);
+const io = new Server(server2);
 
 io.on("connection", (socket) => {
     console.log(`User Connected: ${socket.id}`);
