@@ -86,7 +86,7 @@ function User({ setOnlineUsers }) {
     },
     container: {
       mt: { xs: '5rem', md: '0rem' },
-      position: { xs: 'relative', md: 'fixed' },
+      position: { xs: 'fixed', md: 'fixed' },
       // display: { xs: 'inline-block', md: 'flex' },
       justifyContent: { xs: 'flex-center', md: 'flex-end' },
       align: { xs: 'center', md: 'right' },
