@@ -14,7 +14,7 @@ app.use((req, res, next) => {
 /* Sockets */
 const http = require("http");
 const cors = require("cors");
-const { Server } = require("socket.io");
+const socket = require("socket.io");
 app.use(cors());
 var count = 0;
 const server = http.createServer(app);
@@ -34,33 +34,12 @@ app.use('/users', users);
 const PATH = 'https://geoplacer.herokuapp.com';
 
 /* Sockets */
-const io = new Server(server, {
-  cors: {
-    origin: PATH,
-    methods: ["GET", "POST"],
-  },
-});
-io.on("connection", (socket) => {
-  console.log(`User Connected: ${socket.id}`);
-
-  socket.on("join_chat", (data) => {
-    socket.join(data);
-    console.log(`User with ID: ${socket.id} joined room: ${data}`);
-    count++
-    console.log("count: " + count);
-    socket.emit('count', count);
-  });
-
-  socket.on("send_message", (data) => {
-    socket.to(data.room).emit("receive_message", data);
-  });
-
-  socket.on("disconnect", () => {
-    console.log("User Disconnected", socket.id);
-    count--;
-    socket.emit('count', count);
-  });
-});
+// const io = new Server(server, {
+//   cors: {
+//     origin: PATH,
+//     methods: ["GET", "POST"],
+//   },
+// });
 
 
 const PORT = process.env.PORT || 8080;
@@ -73,8 +52,34 @@ app.listen(PORT, () => {
   console.log(`App running on port ${PORT}`);
 });
 
-const CHATPORT = process.env.CHATPORT || 3001;
+const CHATPORT = process.env.PORT || 3000;
 
-server.listen(CHATPORT, () => {
-  console.log(`Chat server running on port ${CHATPORT}`);
-});
+const INDEX = '/index.html';
+
+const server2 = express()
+  .use((req, res) => res.sendFile(INDEX, { root: __dirname }))
+  .listen(CHATPORT, () => console.log(`Listening on ${CHATPORT}`));
+
+const io = socketIO(server2);
+
+io.on("connection", (socket) => {
+    console.log(`User Connected: ${socket.id}`);
+  
+    socket.on("join_chat", (data) => {
+      socket.join(data);
+      console.log(`User with ID: ${socket.id} joined room: ${data}`);
+      count++
+      console.log("count: " + count);
+      socket.emit('count', count);
+    });
+  
+    socket.on("send_message", (data) => {
+      socket.to(data.room).emit("receive_message", data);
+    });
+  
+    socket.on("disconnect", () => {
+      console.log("User Disconnected", socket.id);
+      count--;
+      socket.emit('count', count);
+    });
+  });
