@@ -5,6 +5,8 @@ import {
     Container,
     Typography,
     Button,
+    Slider,
+    Box
 } from '@mui/material';
 
 
@@ -174,12 +176,18 @@ function MyMapComponent({ squares, selectedColor, handleGetSquares }) {
             width: '15rem',
             color: "#FF0000"
         }
+
     }
 
     return (
         <>
             <div ref={ref} style={{ width: "100%", height: "100%" }} />
-            <Button variant='outlined' sx={styles.redbutton} onClick={() => handleAddSquare()} disabled={!inRange}>Add Square</Button>
+            <Box sx={{ display: 'flex', flexDirection: 'row' }}>
+                <Button variant='outlined' sx={styles.redbutton} onClick={() => handleAddSquare()} disabled={!inRange}>Add Square</Button>
+                <Box sx={{ flexGrow: 1 }}/>
+                <Slider sx={{ width: '20rem' }} />
+            </Box>
+            
         </>
     );
 
