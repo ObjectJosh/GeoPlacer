@@ -68,7 +68,7 @@ function App() {
 
     const renderLogin = () => {
         return (
-            <User showChat={showChat} setShowChat={setShowChat}/>
+            <User showChat={showChat} setShowChat={setShowChat} />
         )
     }
 
