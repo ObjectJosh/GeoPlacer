@@ -10,7 +10,7 @@ app.use((req, res, next) => {
   else
     next()
 })
-}
+// }
 /* Sockets */
 const http = require("http");
 const cors = require("cors");
