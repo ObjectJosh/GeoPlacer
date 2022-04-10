@@ -224,9 +224,17 @@ function MyMapComponent({ squares, selectedColor, handleGetSquares, plac, setPla
     }, [position]);
 
     const styles = {
-        redbutton: {
+        btn: {
             width: '15rem',
-            color: "#FF0000"
+            backgroundColor: '#43a047',
+            color: 'white',
+            borderRadius: '3rem',
+            fontSize: '1.2rem',
+            textTransform: 'none',
+            pt: '1rem',
+            pb: '1rem',
+            mb: '1.5rem'
+            // color: "#FF0000"
         }
 
     }
@@ -235,7 +243,7 @@ function MyMapComponent({ squares, selectedColor, handleGetSquares, plac, setPla
         <>
             <div ref={ref} style={{ width: "100%", height: "100%" }} />
             <Box sx={{ display: 'flex', flexDirection: 'row' }}>
-                <Button variant='outlined' sx={styles.redbutton} onClick={() => handleAddSquare()} disabled={!inRange}>Add Square</Button>
+                <Button variant='outlined' sx={styles.btn} onClick={() => handleAddSquare()} disabled={!inRange}>Add Square</Button>
                 {/* <Box sx={{ flexGrow: 1 }} /> */}
                 <Box sx={{ width: '40%' }}>
                     <Slider sx={{ width: '20rem' }} defaultValue={50} valueLabelDisplay="auto" onChange={(event, value) => { changeSquareArrOpacity(value / 100) }} />
