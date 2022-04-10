@@ -12,7 +12,7 @@ import {
     FormControlLabel
 } from '@mui/material';
 
-
+console.log(process.env)
 const TOPLEFT_LAT = parseFloat(process.env.REACT_APP_TOPLEFT_LAT)
 const TOPLEFT_LONG = parseFloat(process.env.REACT_APP_TOPLEFT_LONG)
 const SQUARE_DIM = parseFloat(process.env.REACT_APP_SQUARE_DIM)
