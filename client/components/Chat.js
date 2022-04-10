@@ -1,5 +1,12 @@
 import React, { useEffect, useState } from "react";
 import ScrollToBottom from "react-scroll-to-bottom";
+import {
+  Container,
+  Box,
+  Typography,
+  Button,
+  Link,
+} from '@mui/material';
 
 function Chat({ socket, username, room }) {
   const [currentMessage, setCurrentMessage] = useState("");
@@ -29,17 +36,24 @@ function Chat({ socket, username, room }) {
     });
   }, [socket]);
 
+  const styles = {
+    container: {
+      position: 'absolute',
+    }
+  }
+
   return (
-    <div className="chat-window">
+    <Box className="chat-window" >
       <div className="chat-header">
         <p>Live Chat</p>
       </div>
       <div className="chat-body">
 
         <ScrollToBottom className="message-container">
-          {messageList.map((messageContent) => {
+          {messageList.map((messageContent, index) => {
             return (
               <div
+                key={index}
                 className="message"
                 id={username === messageContent.author ? "you" : "other"}
               >
@@ -77,7 +91,7 @@ function Chat({ socket, username, room }) {
       <div className="user_count">
       </div>
 
-    </div>
+    </Box>
   );
 }
 

@@ -13,6 +13,7 @@ import { getSquares } from './api/square';
 import Colors from './components/Colors';
 import earthImage from './img/earth.png';
 
+
 function App() {
     const [username, setUsername] = useState("");
     const [room, setRoom] = useState("");
