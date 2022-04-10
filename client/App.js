@@ -152,7 +152,7 @@ function App() {
                     <Typography variant='h4' ref={descriptionRef} sx={{ mb: '1rem', fontWeight: '700' }}>
                         How to play
                     </Typography>
-                    <Typography variant='body1' sx={{ fontSize: '1.4rem', mb: '2rem', fontWeight: '500' }}>
+                    <Typography className='bounce' variant='body1' sx={{ fontSize: '1.4rem', mb: '2rem', fontWeight: '500' }}>
                         Walk around and color in squares. It's that simple!
                     </Typography>
                     <Typography className='move' variant='body1' sx={{ fontSize: '1.5rem', transform: { xs: 'rotate(-15deg) translateX(0rem)', md: 'rotate(-15deg) translateX(-8rem)' }, mb: { xs: '4rem', md: '2rem' }, color: '#fc9803', fontWeight: '600' }}>

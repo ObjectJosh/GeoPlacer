@@ -26,6 +26,27 @@
     }
 }
 
+.bounce {
+    -webkit-animation: b 2s linear infinite;
+    -moz-animation: b 2s linear infinite;
+    animation: b 2s linear infinite;
+}
+
+@keyframes b {
+    0% {
+        transform: translateY(0rem);
+    }
+    10% {
+        transform: translateY(-0.5rem);
+    }
+    20% {
+        transform: translateY(0rem);
+    }
+    100% {
+        transform: translateY(0rem);
+    }
+}
+
 .move {
     -webkit-animation: wiggle 2s linear infinite;
     -moz-animation: wiggle 2s linear infinite;
