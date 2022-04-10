@@ -99,12 +99,12 @@ function App() {
     const renderLeaderboardItem = (user, index) => {
         return (
             <Box key={index} sx={{ display: 'flex', justifyContent: 'center', flexDirection: 'row', textAlign: 'left' }}>
-                 <Box sx={{ width: '10rem' }}>
+                 <Box sx={{ width: { xs: '5rem', md: '10rem' } }}>
                     <Typography variant='body1' key={index}>
                         {`${index + 1}. ${user.id}`}
                     </Typography>
                 </Box>
-                <Box sx={{ width: '10rem' }}>
+                <Box sx={{ width: { xs: '5rem', md: '10rem' } }}>
                     <Typography variant='body1' key={index} sx={{ textAlign: 'right' }}>
                         {`${user.placed}`}
                     </Typography>
@@ -116,8 +116,9 @@ function App() {
 
     const renderLeaderboard = () => {
         return (
-            <Box sx={{ width: '100%', mt: '4rem' }}>
+            <Box sx={{ width: '100%', mt: '4rem', pb: '5rem' }}>
                 <Typography role="img" style={{ fontSize: '2rem', fontWeight: '700', pb: '2rem' }}>🏆 Leaderboard </Typography>
+                <Box sx={{ height: '1rem' }}></Box>
                 {leaderboard?.map((user, index) => {
                     if (user.placed > 0) {
                         return renderLeaderboardItem(user, index)
@@ -137,9 +138,9 @@ function App() {
                     </Typography>
                 </Link> */}
                 <Map squares={squares} selectedColor={colors[colorIndex]} handleGetSquares={handleGetSquares} setPlac={setPlac} plac={plac}/>
+                <Colors colors={colors} colorIndex={colorIndex} setColorIndex={setColorIndex} />
                 {renderOnlineUsers()}
                 {renderLeaderboard()}
-                <Colors colors={colors} colorIndex={colorIndex} setColorIndex={setColorIndex} />
                 <Box sx={{ position: 'relative', mt: '8rem' }}>
                     <img alt='world' src={earthImage} style={{ position: 'absolute', width: '80%', height: 'auto', transform: 'translate(-50%, -20%)', opacity: 0.8, zIndex: -5 }} />
                     <Typography variant='h4' ref={descriptionRef} sx={{ mb: '1rem', fontWeight: '700' }}>
@@ -148,13 +149,13 @@ function App() {
                     <Typography variant='body1' sx={{ fontSize: '1.4rem', mb: '2rem', fontWeight: '500' }}>
                         Walk around and color in squares. It's that simple!
                     </Typography>
-                    <Typography variant='body1' sx={{ fontSize: '1.5rem', transform: 'rotate(-15deg) translateX(-8rem)', mb: '2rem', color: '#fc9803', fontWeight: '600' }}>
+                    <Typography variant='body1' sx={{ fontSize: '1.5rem', transform: { xs: 'rotate(-15deg) translateX(0rem)', md: 'rotate(-15deg) translateX(-8rem)' }, mb: { xs: '4rem', md: '2rem' }, color: '#fc9803', fontWeight: '600' }}>
                         Paint a picture with friends!
                     </Typography>
-                    <Typography variant='body1' sx={{ fontSize: '1.5rem', transform: 'rotate(15deg) translateX(8rem)', mb: '4rem', color: '#00de3b', fontWeight: '600' }}>
+                    <Typography variant='body1' sx={{ fontSize: '1.5rem', transform: { xs: 'rotate(10deg) translateX(0rem)', md: 'rotate(-15deg) translateX(8rem)' }, mb: '4rem', color: '#00de3b', fontWeight: '600' }}>
                         Collaborate with others!
                     </Typography>
-                    <Typography variant='body1' sx={{ fontSize: '1.5rem', transform: 'rotate(-10deg) translateX(-3rem)', mb: '2rem', color: '#ff3b29', fontWeight: '600' }}>
+                    <Typography variant='body1' sx={{ fontSize: '1.5rem', transform: { xs: 'rotate(-10deg) translateX(0rem)', md: 'rotate(-10deg) translateX(-3rem)' }, mb: '2rem', color: '#ff3b29', fontWeight: '600' }}>
                         Just have some fun!
                     </Typography>
                 </Box>

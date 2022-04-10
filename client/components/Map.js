@@ -237,7 +237,7 @@ function MyMapComponent({ squares, selectedColor, handleGetSquares, plac, setPla
             <Box sx={{ display: 'flex', flexDirection: 'row' }}>
                 <Button variant='outlined' sx={styles.redbutton} onClick={() => handleAddSquare()} disabled={!inRange}>Add Square</Button>
                 {/* <Box sx={{ flexGrow: 1 }} /> */}
-                <Box sx={{ width: '20rem' }}>
+                <Box sx={{ width: '40%' }}>
                     <Slider sx={{ width: '20rem' }} defaultValue={50} valueLabelDisplay="auto" onChange={(event, value) => { changeSquareArrOpacity(value / 100) }} />
                     <FormControlLabel sx={{ width: '20rem' }} control={<Switch defaultChecked />} label="Show Borders" onChange={(event, value) => { showSquareArrBorders(value) }} />
                 </Box>
