@@ -3,6 +3,8 @@ const router = require('express').Router();
 const { check, validationResult } = require('express-validator');
 var uuid = require('uuid');
 
+const { Model, Sequelize, DataTypes } = require('sequelize');
+
 const Square = require('../models/Square');
 
 router.get('/get', async (req, res) => {
@@ -10,6 +12,23 @@ router.get('/get', async (req, res) => {
     let squares = await Square.findAll({
       // limit: 72,
       // order: [['createdAt', 'ASC']]
+    });
+    res.json(squares);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send('Server error');
+  }
+});
+
+router.get('/find/:coordinates', async (req, res) => {
+  console.log(req.params.coordinates);
+  let coords = req.params.coordinates.split('-');
+  try {
+    let squares = await Square.findAll({
+      where: {
+        x: coords[0],
+        y: coords[1]
+      }
     });
     res.json(squares);
   } catch (err) {
@@ -35,6 +54,22 @@ router.post('/add', async (req, res) => {
 
     const square = await newSquare.save();
 
+    return res.json(square);
+  } catch (err) {
+    console.error(err.message);
+    return res.status(500).send('Server error');
+  }
+});
+
+router.put('/update', async (req, res) => {
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return res.status(400).json({ errors: errors.array() });
+  }
+  const { id, x, y, color, changed } = req.body;
+  const updatedAt = new Date();
+  try {
+    const square = Square.update({ x, y, color, changed, updatedAt }, { where: { id } });
     return res.json(square);
   } catch (err) {
     console.error(err.message);

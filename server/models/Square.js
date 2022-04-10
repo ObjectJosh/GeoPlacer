@@ -29,6 +29,10 @@ Square.init(
         color: {
             type: DataTypes.STRING,
             allowNull: false
+        },
+        changed: {
+            type: DataTypes.SMALLINT,
+            allowNull: false
         }
     },
     { sequelize, modelName: 'square' }
