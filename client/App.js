@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef } from 'react';
-
+import './App.css';
 import {
     Container,
     Box,
@@ -141,6 +141,12 @@ function App() {
                 <Colors colors={colors} colorIndex={colorIndex} setColorIndex={setColorIndex} />
                 {renderOnlineUsers()}
                 {renderLeaderboard()}
+                <Box sx={{width: '100%', justifyContent: 'center', textAlign: 'center', display: 'flex' }}>
+                    <Typography className='geo' variant='h3' x={{ mb: '1rem', fontSize: '4rem', fontWeight: '800', textAlign: 'center' }}>
+                        Geoplacer
+                    </Typography>
+                </Box>
+                
                 <Box sx={{ position: 'relative', mt: '8rem' }}>
                     <img alt='world' src={earthImage} style={{ position: 'absolute', width: '80%', height: 'auto', transform: 'translate(-50%, -20%)', opacity: 0.8, zIndex: -5 }} />
                     <Typography variant='h4' ref={descriptionRef} sx={{ mb: '1rem', fontWeight: '700' }}>
@@ -152,7 +158,7 @@ function App() {
                     <Typography variant='body1' sx={{ fontSize: '1.5rem', transform: { xs: 'rotate(-15deg) translateX(0rem)', md: 'rotate(-15deg) translateX(-8rem)' }, mb: { xs: '4rem', md: '2rem' }, color: '#fc9803', fontWeight: '600' }}>
                         Paint a picture with friends!
                     </Typography>
-                    <Typography variant='body1' sx={{ fontSize: '1.5rem', transform: { xs: 'rotate(10deg) translateX(0rem)', md: 'rotate(-15deg) translateX(8rem)' }, mb: '4rem', color: '#00de3b', fontWeight: '600' }}>
+                    <Typography variant='body1' sx={{ fontSize: '1.5rem', transform: { xs: 'rotate(10deg) translateX(0rem)', md: 'rotate(10deg) translateX(8rem)' }, mb: '4rem', color: '#00de3b', fontWeight: '600' }}>
                         Collaborate with others!
                     </Typography>
                     <Typography variant='body1' sx={{ fontSize: '1.5rem', transform: { xs: 'rotate(-10deg) translateX(0rem)', md: 'rotate(-10deg) translateX(-3rem)' }, mb: '2rem', color: '#ff3b29', fontWeight: '600' }}>
