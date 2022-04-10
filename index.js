@@ -1,5 +1,6 @@
 const express = require('express');
 var favicon = require('serve-favicon');
+require('dotenv').config();
 
 const app = express();
 /* Sockets */
@@ -9,6 +10,8 @@ const { Server } = require("socket.io");
 app.use(cors());
 var count = 0;
 const server = http.createServer(app);
+console.log('SERVER')
+console.log(server)
 
 app.use(express.json({ extended: false }));
 app.use(express.urlencoded({ extended: false }));
