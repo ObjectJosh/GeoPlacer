@@ -14,7 +14,7 @@ import { useUser } from '../UserProvider';
 
 import { findUser, addUser } from '../api/user';
 
-const PATH = 'https://geoplacer.herokuapp.com:3000';
+const PATH = 'ws://your-app.herokuapp.com:8080/socket.io/?EIO=4&transport=websocket';
 // const PATH = "http://localhost:3001";
 
 const socket = io.connect(PATH);
