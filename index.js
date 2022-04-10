@@ -28,8 +28,8 @@ require('./server/database');
 const squares = require('./server/routes/squares');
 app.use('/squares', squares);
 
-// const PATH = 'http://localhost:8080';
-const PATH = 'https://geoplacer.herokuapp.com';
+const PATH = 'http://localhost:8080';
+// const PATH = 'https://geoplacer.herokuapp.com';
 
 /* Sockets */
 const io = new Server(server, {
