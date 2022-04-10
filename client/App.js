@@ -117,7 +117,7 @@ function App() {
     const renderLeaderboard = () => {
         return (
             <Box sx={{ width: '100%', mt: '4rem' }}>
-                <Typography role="img" style={{ fontSize: '2rem', fontWeight: '700', mb: '1rem' }}>🏆 Leaderboard </Typography>
+                <Typography role="img" style={{ fontSize: '2rem', fontWeight: '700', pb: '2rem' }}>🏆 Leaderboard </Typography>
                 {leaderboard?.map((user, index) => {
                     if (user.placed > 0) {
                         return renderLeaderboardItem(user, index)
