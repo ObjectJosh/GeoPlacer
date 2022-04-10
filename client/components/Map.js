@@ -13,10 +13,10 @@ import {
 } from '@mui/material';
 
 
-const TOPLEFT_LAT = parseFloat(process.env.TOPLEFT_LAT)
-const TOPLEFT_LONG = parseFloat(process.env.TOPLEFT_LONG)
-const SQUARE_DIM = parseFloat(process.env.SQUARE_DIM)
-const GRID_DIM = parseInt(process.env.GRID_DIM)
+const TOPLEFT_LAT = parseFloat(process.env.REACT_APP_TOPLEFT_LAT)
+const TOPLEFT_LONG = parseFloat(process.env.REACT_APP_TOPLEFT_LONG)
+const SQUARE_DIM = parseFloat(process.env.REACT_APP_SQUARE_DIM)
+const GRID_DIM = parseInt(process.env.REACT_APP_GRID_DIM)
 
 
 const render = (status) => {
@@ -34,7 +34,7 @@ const Map = ({ squares, selectedColor, handleGetSquares }) => {
                 height: "600px",
             }}
         >
-            <Wrapper apiKey={process.env.GOOGLE_MAPS_API_KEY} render={render}>
+            <Wrapper apiKey={process.env.REACT_APP_GOOGLE_MAPS_API_KEY} render={render}>
                 <MyMapComponent squares={squares} selectedColor={selectedColor}
                     handleGetSquares={handleGetSquares} />
             </Wrapper>
