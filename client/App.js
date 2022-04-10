@@ -98,7 +98,7 @@ function App() {
     
     const renderLeaderboardItem = (user, index) => {
         return (
-            <Box sx={{ display: 'flex', justifyContent: 'center', flexDirection: 'row', textAlign: 'left' }}>
+            <Box key={index} sx={{ display: 'flex', justifyContent: 'center', flexDirection: 'row', textAlign: 'left' }}>
                  <Box sx={{ width: '10rem' }}>
                     <Typography variant='body1' key={index}>
                         {`${index + 1}. ${user.id}`}
