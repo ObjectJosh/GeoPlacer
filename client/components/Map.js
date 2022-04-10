@@ -44,7 +44,7 @@ const Map = ({ squares, selectedColor, handleGetSquares, plac, setPlac }) => {
             <Wrapper apiKey={API_KEY} render={render}>
                 <MyMapComponent squares={squares} selectedColor={selectedColor}
                     handleGetSquares={handleGetSquares}
-                    plac={plac} setPlac={setPlac}/>
+                    plac={plac} setPlac={setPlac} />
             </Wrapper>
         </div>
     );
@@ -66,6 +66,7 @@ function MyMapComponent({ squares, selectedColor, handleGetSquares, plac, setPla
 
     function showPosition(pos) {
         setPosition(pos.coords);
+        console.log(pos.coords)
     }
 
     function handleAddSquare() {
@@ -97,9 +98,9 @@ function MyMapComponent({ squares, selectedColor, handleGetSquares, plac, setPla
             /* If no user found, make new user */
             if (!user || (user && user.length === 0)) {
                 addUser({
-                id: username,
-                pin: pin,
-                placed: 0
+                    id: username,
+                    pin: pin,
+                    placed: 0
                 });
             } else { /* User found. Set user */
                 setCurrentUser(user[0]);
@@ -176,8 +177,11 @@ function MyMapComponent({ squares, selectedColor, handleGetSquares, plac, setPla
             setMap(new window.google.maps.Map(ref.current,
                 {
                     center: { lat: position?.latitude, lng: position?.longitude },
-                    zoom: 16
+                    zoom: 16,
+                    mapTypeId: 'satellite'
                 }));
+        } else if (ref.current && !position) {
+            setMap(null)
         }
     }, [ref, map, position]);
 
@@ -234,6 +238,7 @@ function MyMapComponent({ squares, selectedColor, handleGetSquares, plac, setPla
     return (
         <>
             <div ref={ref} style={{ width: "100%", height: "100%" }} />
+            {!map ? <Typography sx={{ color: "#FF0000", fontSize: 32 }}>Please Enable Location Services</Typography> : null}
             <Box sx={{ display: 'flex', flexDirection: 'row' }}>
                 <Button variant='outlined' sx={styles.redbutton} onClick={() => handleAddSquare()} disabled={!inRange}>Add Square</Button>
                 {/* <Box sx={{ flexGrow: 1 }} /> */}
