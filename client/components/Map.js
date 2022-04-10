@@ -249,7 +249,7 @@ function MyMapComponent({ squares, selectedColor, handleGetSquares, plac, setPla
             <Box sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
                  <Box sx={{ width: '40%', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
                     <Slider sx={{ width: '20rem' }} defaultValue={50} valueLabelDisplay="auto" onChange={(event, value) => { changeSquareArrOpacity(value / 100) }} />
-                    <FormControlLabel control={<Switch defaultChecked />} label="Show Borders" onChange={(event, value) => { showSquareArrBorders(value) }} />
+                    <FormControlLabel multiline={false} control={<Switch defaultChecked />} label="Show Borders" onChange={(event, value) => { showSquareArrBorders(value) }} />
                 </Box>
                 <Button variant='outlined' sx={styles.btn} onClick={() => handleAddSquare()} disabled={!inRange}>{inRange ? 'Add Square' : 'Not in Range'}</Button>
                 {/* <Box sx={{ flexGrow: 1 }} /> */}

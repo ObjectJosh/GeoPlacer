@@ -189,7 +189,7 @@ function App() {
         <Container sx={styles.mainContainer}>
             <Typography variant='h2' sx={styles.header}>Welcome to GeoPlacer</Typography>
             {currentUser && <Typography variant='h5' sx={{ mb: '0rem', fontWeight: '700', fontSize: '2rem' }}>{`Hello, ${currentUser.id}!`}</Typography>}
-            {currentUser && <Typography variant='h5' sx={{ mb: '2rem' }}>{`Explore around the GeoWorld`}</Typography>}
+            {currentUser && <Typography variant='h5' sx={{ mb: '2rem' }}>{`Explore around the ${'🌎'} GeoWorld`}</Typography>}
             {/* {renderBody()} */}
             {displayChat ? renderBody() : null}
             {renderLogin()}
