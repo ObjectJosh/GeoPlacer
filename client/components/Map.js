@@ -6,7 +6,10 @@ import {
     Typography,
     Button,
     Slider,
-    Box
+    Box,
+    Switch,
+    FormGroup,
+    FormControlLabel
 } from '@mui/material';
 
 
@@ -102,9 +105,9 @@ function MyMapComponent({ squares, selectedColor, handleGetSquares }) {
 
     function addRectangle(map, color, opacity, showBorders, x, y, bounds) {
         const rectangle = new window.google.maps.Rectangle({
-            strokeColor: color,
+            strokeColor: "#FFFFFF",
             strokeOpacity: showBorders ? 1 : 0,
-            strokeWeight: 3,
+            strokeWeight: 2,
             fillColor: color,
             fillOpacity: opacity,
             map,
@@ -113,6 +116,26 @@ function MyMapComponent({ squares, selectedColor, handleGetSquares }) {
         let arrayCopy = squaresArr;
         arrayCopy[y][x] = rectangle;
         setSquaresArr(arrayCopy)
+    }
+
+    function changeSquareArrOpacity(opacity) {
+        for (var y = 0; y < GRID_DIM; y++) {
+            for (var x = 0; x < GRID_DIM; x++) {
+                if (squaresArr[y][x] != 0) {
+                    squaresArr[y][x].setOptions({ fillOpacity: opacity });
+                }
+            }
+        }
+    }
+
+    function showSquareArrBorders(value) {
+        for (var y = 0; y < GRID_DIM; y++) {
+            for (var x = 0; x < GRID_DIM; x++) {
+                if (squaresArr[y][x] != 0) {
+                    squaresArr[y][x].setOptions({ strokeOpacity: value });
+                }
+            }
+        }
     }
 
     useEffect(() => {
@@ -158,7 +181,7 @@ function MyMapComponent({ squares, selectedColor, handleGetSquares }) {
         if (map && squaresArr) {
             squares?.forEach((square) => {
                 if (squaresArr[square.y][square.x] != 0 && squaresArr[square.y][square.x]) {
-                    squaresArr[square.y][square.x]?.setOptions({ fillColor: square.color, strokeColor: square.color })
+                    squaresArr[square.y][square.x]?.setOptions({ fillColor: square.color, strokeColor: "#FFFFFF" })
                     setSquaresArr(squaresArr)
                 }
             });
@@ -184,10 +207,12 @@ function MyMapComponent({ squares, selectedColor, handleGetSquares }) {
             <div ref={ref} style={{ width: "100%", height: "100%" }} />
             <Box sx={{ display: 'flex', flexDirection: 'row' }}>
                 <Button variant='outlined' sx={styles.redbutton} onClick={() => handleAddSquare()} disabled={!inRange}>Add Square</Button>
-                <Box sx={{ flexGrow: 1 }}/>
-                <Slider sx={{ width: '20rem' }} />
+                {/* <Box sx={{ flexGrow: 1 }} /> */}
+                <Box sx={{ width: '20rem' }}>
+                    <Slider sx={{ width: '20rem' }} defaultValue={50} valueLabelDisplay="auto" onChange={(event, value) => { changeSquareArrOpacity(value / 100) }} />
+                    <FormControlLabel sx={{ width: '20rem' }} control={<Switch defaultChecked />} label="Show Borders" onChange={(event, value) => { showSquareArrBorders(value) }} />
+                </Box>
             </Box>
-            
         </>
     );
 
