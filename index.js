@@ -22,7 +22,7 @@ app.use('/squares', squares);
 /* Sockets */
 const io = new Server(server, {
     cors: {
-      origin: process.env.FRONTEND_URL || "http://localhost:8080",
+      origin: process.env.FRONTEND_URL,
       methods: ["GET", "POST"],
     },
 });
