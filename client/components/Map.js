@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Wrapper, Status } from "@googlemaps/react-wrapper";
 import { addSquare, findSquares, updateSquare } from '../api/square';
+import { updateUser, findUser, addUser } from '../api/user';
 import {
     Container,
     Typography,
@@ -11,8 +12,9 @@ import {
     FormGroup,
     FormControlLabel
 } from '@mui/material';
+import { useUser } from '../UserProvider';
 
-console.log(process.env)
+
 // const TOPLEFT_LAT = parseFloat(process.env.REACT_APP_TOPLEFT_LAT)
 // const TOPLEFT_LONG = parseFloat(process.env.REACT_APP_TOPLEFT_LONG)
 // const SQUARE_DIM = parseFloat(process.env.REACT_APP_SQUARE_DIM)
@@ -30,7 +32,7 @@ const render = (status) => {
     return null;
 };
 
-const Map = ({ squares, selectedColor, handleGetSquares }) => {
+const Map = ({ squares, selectedColor, handleGetSquares, plac, setPlac }) => {
     return (
         <div
             style={{
@@ -41,13 +43,15 @@ const Map = ({ squares, selectedColor, handleGetSquares }) => {
         >
             <Wrapper apiKey={API_KEY} render={render}>
                 <MyMapComponent squares={squares} selectedColor={selectedColor}
-                    handleGetSquares={handleGetSquares} />
+                    handleGetSquares={handleGetSquares}
+                    plac={plac} setPlac={setPlac}/>
             </Wrapper>
         </div>
     );
 };
 
-function MyMapComponent({ squares, selectedColor, handleGetSquares }) {
+function MyMapComponent({ squares, selectedColor, handleGetSquares, plac, setPlac }) {
+    const { currentUser, setCurrentUser } = useUser();
     const ref = useRef(null);
     const [map, setMap] = useState();
     const [curLocMarker, setCurLocMarker] = useState();
@@ -85,9 +89,29 @@ function MyMapComponent({ squares, selectedColor, handleGetSquares }) {
                     changed: matches[0].changed + 1
                 })
             }
+            setPlac(plac + 1);
             await handleGetSquares();
         }
-        blockingAddSquare()
+        async function update() {
+            let user = await findUser(currentUser.id);
+            /* If no user found, make new user */
+            if (!user || (user && user.length === 0)) {
+                addUser({
+                id: username,
+                pin: pin,
+                placed: 0
+                });
+            } else { /* User found. Set user */
+                setCurrentUser(user[0]);
+            }
+            let newPlaced = currentUser?.placed + 1;
+            await updateUser({
+                id: currentUser?.id,
+                placed: newPlaced
+            });
+        }
+        blockingAddSquare();
+        update();
     }
 
     function userInRange() {

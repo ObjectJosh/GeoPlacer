@@ -13,6 +13,7 @@ import { useUser } from './UserProvider';
 import Map from './components/Map';
 import User from './components/User';
 import { getSquares } from './api/square';
+import { getLeaderboard } from './api/user';
 import Colors from './components/Colors';
 import earthImage from './img/earth.png';
 
@@ -26,6 +27,7 @@ function App() {
     // const [room, setRoom] = useState("");
 
     const [squares, setSquares] = useState([]);
+    const [plac, setPlac] = useState(0);
     const colors = [
         '#000000',
         '#FF0000',
@@ -36,6 +38,15 @@ function App() {
     const [colorIndex, setColorIndex] = useState(0);
     // const [color, setColor] = useState()
     const descriptionRef = useRef(null);
+    const [leaderboard, setLeaderboard] = useState([]);
+
+    useEffect(() => {
+        async function leaderboard() {
+            let board = await getLeaderboard();
+            setLeaderboard(board);
+        }
+        leaderboard();
+    }, [squares, plac])
 
     async function handleGetSquares() {
         setSquares(await getSquares());
@@ -84,6 +95,38 @@ function App() {
             </Box>
         );
     }
+    
+    const renderLeaderboardItem = (user, index) => {
+        return (
+            <Box sx={{ display: 'flex', justifyContent: 'center', flexDirection: 'row', textAlign: 'left' }}>
+                 <Box sx={{ width: '10rem' }}>
+                    <Typography variant='body1' key={index}>
+                        {`${index + 1}. ${user.id}`}
+                    </Typography>
+                </Box>
+                <Box sx={{ width: '10rem' }}>
+                    <Typography variant='body1' key={index} sx={{ textAlign: 'right' }}>
+                        {`${user.placed}`}
+                    </Typography>
+                </Box>
+            </Box>
+           
+        );
+    }
+
+    const renderLeaderboard = () => {
+        return (
+            <Box sx={{ width: '100%', mt: '4rem' }}>
+                <Typography role="img" style={{ fontSize: '2rem', fontWeight: '700', mb: '1rem' }}>🏆 Leaderboard </Typography>
+                {leaderboard?.map((user, index) => {
+                    if (user.placed > 0) {
+                        return renderLeaderboardItem(user, index)
+                    }
+                    
+                })}
+            </Box>
+        );
+    }
 
     const renderBody = () => {
         return (
@@ -93,8 +136,9 @@ function App() {
                         How to play
                     </Typography>
                 </Link> */}
-                <Map squares={squares} selectedColor={colors[colorIndex]} handleGetSquares={handleGetSquares} />
+                <Map squares={squares} selectedColor={colors[colorIndex]} handleGetSquares={handleGetSquares} setPlac={setPlac} plac={plac}/>
                 {renderOnlineUsers()}
+                {renderLeaderboard()}
                 <Colors colors={colors} colorIndex={colorIndex} setColorIndex={setColorIndex} />
                 <Box sx={{ position: 'relative', mt: '8rem' }}>
                     <img alt='world' src={earthImage} style={{ position: 'absolute', width: '80%', height: 'auto', transform: 'translate(-50%, -20%)', opacity: 0.8, zIndex: -5 }} />

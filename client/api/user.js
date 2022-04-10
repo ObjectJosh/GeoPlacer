@@ -100,3 +100,28 @@ export const updateUser = async (data_json) => {
         return {err: "Error updating user"}
     })
 }
+
+
+export const getLeaderboard = async () => {
+    return await fetch('users/leaderboard', {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    })
+    .then(async (res) => {
+        let data = await res.json()
+        if (res.status === 200) {
+            window.console.log("Successfully retrieved leaderboard");
+            return data;
+        } else {
+            console.error("Error retrieveing leaderboard: ", data.msg)
+            return {err: data.msg}
+        }
+    })
+    .catch(err => {
+        console.error("Error finding user")
+        console.error(err)
+        return {err: "Error finding user"}
+    })
+}

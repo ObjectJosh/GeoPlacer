@@ -57,21 +57,21 @@ router.post('/add', async (req, res) => {
   }
 });
 
-// router.put('/update', async (req, res) => {
-//   const errors = validationResult(req);
-//   if (!errors.isEmpty()) {
-//     return res.status(400).json({ errors: errors.array() });
-//   }
-//   const { id, x, y, color, changed } = req.body;
-//   const updatedAt = new Date();
-//   try {
-//     const square = Square.update({ x, y, color, changed, updatedAt }, { where: { id } });
-//     return res.json(square);
-//   } catch (err) {
-//     console.error(err.message);
-//     return res.status(500).send('Server error');
-//   }
-// });
+router.put('/update', async (req, res) => {
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return res.status(400).json({ errors: errors.array() });
+  }
+  const { id, placed } = req.body;
+  const updatedAt = new Date();
+  try {
+    const user = User.update({ id, placed }, { where: { id } });
+    return res.json(user);
+  } catch (err) {
+    console.error(err.message);
+    return res.status(500).send('Server error');
+  }
+});
 
 // router.put('/', async (req, res) => {
 //   const errors = validationResult(req);
@@ -101,6 +101,19 @@ router.post('/add', async (req, res) => {
 //     return res.status(500).send('Server Error');
 //   }
 // });
+
+router.get('/leaderboard', async (req, res) => {
+  try {
+    let users = await User.findAll({
+      limit: 10,
+      order: [['placed', 'DESC']]
+    });
+    res.json(users);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send('Server error');
+  }
+});
 
 getCurrentDatetime = () => {
   return new Date().toISOString().slice(0, 19).replace('T', ' ');
