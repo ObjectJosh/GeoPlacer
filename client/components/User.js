@@ -14,10 +14,13 @@ import { useUser } from '../UserProvider';
 
 import { findUser, addUser } from '../api/user';
 
-const PATH = 'ws://your-app.herokuapp.com:8080/socket.io/?EIO=4&transport=websocket';
+// const PATH = 'ws://your-app.herokuapp.com:8080/socket.io/?EIO=4&transport=websocket';
 // const PATH = "http://localhost:3001";
 
-const socket = io.connect(PATH);
+// const io = require('socket.io-client');
+const socket = io();
+
+// const socket = io.connect(PATH);
 // const socket = require("socket.io-client")(PATH);
 // socket.on("connect_error", (err) => {
 //   console.log(`connect_error due to ${err.message}`);
