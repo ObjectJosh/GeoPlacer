@@ -225,6 +225,7 @@ function MyMapComponent({ squares, selectedColor, handleGetSquares, plac, setPla
 
     const styles = {
         btn: {
+            mt: '2rem',
             width: '15rem',
             backgroundColor: '#43a047',
             color: 'white',
@@ -233,7 +234,10 @@ function MyMapComponent({ squares, selectedColor, handleGetSquares, plac, setPla
             textTransform: 'none',
             pt: '1rem',
             pb: '1rem',
-            mb: '1.5rem'
+            mb: '1.5rem',
+            '&:hover': {
+                backgroundColor: '#37873b'
+            }
             // color: "#FF0000"
         }
 
@@ -242,13 +246,14 @@ function MyMapComponent({ squares, selectedColor, handleGetSquares, plac, setPla
     return (
         <>
             <div ref={ref} style={{ width: "100%", height: "100%" }} />
-            <Box sx={{ display: 'flex', flexDirection: 'row' }}>
-                <Button variant='outlined' sx={styles.btn} onClick={() => handleAddSquare()} disabled={!inRange}>Add Square</Button>
-                {/* <Box sx={{ flexGrow: 1 }} /> */}
-                <Box sx={{ width: '40%' }}>
+            <Box sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
+                 <Box sx={{ width: '40%', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
                     <Slider sx={{ width: '20rem' }} defaultValue={50} valueLabelDisplay="auto" onChange={(event, value) => { changeSquareArrOpacity(value / 100) }} />
-                    <FormControlLabel sx={{ width: '20rem' }} control={<Switch defaultChecked />} label="Show Borders" onChange={(event, value) => { showSquareArrBorders(value) }} />
+                    <FormControlLabel control={<Switch defaultChecked />} label="Show Borders" onChange={(event, value) => { showSquareArrBorders(value) }} />
                 </Box>
+                <Button variant='outlined' sx={styles.btn} onClick={() => handleAddSquare()} disabled={!inRange}>{inRange ? 'Add Square' : 'Not in Range'}</Button>
+                {/* <Box sx={{ flexGrow: 1 }} /> */}
+                
             </Box>
         </>
     );
