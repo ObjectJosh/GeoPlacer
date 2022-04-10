@@ -12,6 +12,16 @@
     <body>
         <noscript>You need to enable JavaScript to run this app.</noscript>
         <div id="root"></div>
+        <script>
+            var HOST = location.origin.replace(/^http/, 'ws')
+            var ws = new WebSocket(HOST);
+            var el;
+
+            ws.onmessage = function (event) {
+            el = document.getElementById('server-time');
+            el.innerHTML = 'Server time: ' + event.data;
+            };
+        </script>
         <script src="bundle.js"></script>
     </body>
 </html>
