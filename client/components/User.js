@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import "./User.css";
 import io from "socket.io-client";
 import Chat from "./Chat";
+
 import {
   Container,
   Box,
@@ -14,7 +15,7 @@ import { useUser } from '../UserProvider';
 
 import { findUser, addUser } from '../api/user';
 
-// const PATH = 'ws://your-app.herokuapp.com:8080/socket.io/?EIO=4&transport=websocket';
+// const PATH = 'https://geoplacer.herukoapp.com/';
 // const PATH = "http://localhost:3001";
 
 // const io = require('socket.io-client');
