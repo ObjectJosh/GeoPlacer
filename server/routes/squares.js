@@ -49,6 +49,7 @@ router.post('/add', async (req, res) => {
       id: uuid.v4(),
       x: req.body.x,
       y: req.body.y,
+      changed: req.body.changed,
       color: req.body.color
     });
 
