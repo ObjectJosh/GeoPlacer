@@ -1,5 +1,6 @@
 const express = require('express');
 var favicon = require('serve-favicon');
+require('dotenv').config();
 
 const app = express();
 if (process.env.NODE_ENV === 'production') {
@@ -27,10 +28,13 @@ require('./server/database');
 const squares = require('./server/routes/squares');
 app.use('/squares', squares);
 
+// const PATH = 'http://localhost:8080';
+const PATH = 'https://geoplacer.herokuapp.com';
+
 /* Sockets */
 const io = new Server(server, {
   cors: {
-    origin: "http://localhost:8080",
+    origin: PATH,
     methods: ["GET", "POST"],
   },
 });
