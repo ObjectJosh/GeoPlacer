@@ -16,6 +16,14 @@ import earthImage from './img/earth.png';
 
 
 function App() {
+    if (process.env.NODE_ENV === 'production') {
+        app.use((req, res, next) => {
+            if (req.header('x-forwarded-proto') !== 'https')
+                res.redirect(`https://${req.header('host')}${req.url}`)
+            else
+                next()
+        })
+    }
     const [showChat, setShowChat] = useState(false);
     // const [username, setUsername] = useState("");
     // const [room, setRoom] = useState("");
@@ -68,7 +76,7 @@ function App() {
 
     const renderLogin = () => {
         return (
-            <User showChat={showChat} setShowChat={setShowChat}/>
+            <User showChat={showChat} setShowChat={setShowChat} />
         )
     }
 
