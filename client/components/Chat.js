@@ -43,7 +43,6 @@ function Chat({ socket, username, room, setOnlineUsers }) {
 
   useEffect(() => {
     socket.on('count', (count) => {
-      console.log(count)
       setOnlineUsers(count);
     });
   }, [socket]);
