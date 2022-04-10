@@ -3,7 +3,14 @@
     font-family: "Open Sans", sans-serif;
     display: grid;
     place-items: center;
+    position: 'fixed',
+}
+@media only screen and (max-width: 915px) {
+  .ChatApp {
+    position: 'fixed';
   }
+}
+
   body {
     margin: 0%;
     padding: 0%;
