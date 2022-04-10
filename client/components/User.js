@@ -10,8 +10,8 @@ import {
   Link,
 } from '@mui/material';
 
-// const PATH = 'https://geoplacer.herokuapp.com:3001';
-const PATH = "http://localhost:3001";
+const PATH = 'https://geoplacer.herokuapp.com:3001';
+// const PATH = "http://localhost:3001";
 
 const socket = io.connect(PATH);
 
@@ -61,7 +61,7 @@ function User({ showChat, setShowChat }) {
       overflow: 'hidden',
       backgroundColor: 'none',
     }
-    
+
   }
 
   return (
@@ -81,7 +81,7 @@ function User({ showChat, setShowChat }) {
           <Button sx={styles.button} onClick={joinChat}>Join the Chat</Button>
         </div>
       ) : (
-        <Chat socket={socket} username={username} room={room} />        
+        <Chat socket={socket} username={username} room={room} />
       )}
     </Box>
   );
