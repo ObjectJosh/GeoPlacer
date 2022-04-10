@@ -3,14 +3,14 @@ var favicon = require('serve-favicon');
 require('dotenv').config();
 
 const app = express();
-if (process.env.NODE_ENV === 'production') {
-  app.use((req, res, next) => {
-    if (req.header('x-forwarded-proto') !== 'https')
-      res.redirect(`https://${req.header('host')}${req.url}`)
-    else
-      next()
-  })
-}
+// if (process.env.NODE_ENV === 'production') {
+app.use((req, res, next) => {
+  if (req.header('x-forwarded-proto') === 'http')
+    res.redirect(`https://${req.header('host')}${req.url}`)
+  else
+    next()
+})
+// }
 /* Sockets */
 const http = require("http");
 const cors = require("cors");
