@@ -66,7 +66,6 @@ function MyMapComponent({ squares, selectedColor, handleGetSquares, plac, setPla
 
     function showPosition(pos) {
         setPosition(pos.coords);
-        console.log(pos.coords)
     }
 
     function handleAddSquare() {
