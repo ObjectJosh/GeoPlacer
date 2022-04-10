@@ -14,10 +14,14 @@ import { useUser } from '../UserProvider';
 
 import { findUser, addUser } from '../api/user';
 
-const PATH = 'https://geoplacer.herokuapp.com:3001';
+const PATH = 'https://geoplacer.herokuapp.com';
 // const PATH = "http://localhost:3001";
 
 const socket = io.connect(PATH);
+// const socket = require("socket.io-client")(PATH);
+// socket.on("connect_error", (err) => {
+//   console.log(`connect_error due to ${err.message}`);
+// });
 
 function User({ setOnlineUsers }) {
 //   console.log("HEERERRER")
