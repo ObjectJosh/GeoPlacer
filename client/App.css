@@ -32,6 +32,13 @@
     animation: b 2s linear infinite;
 }
 
+.bouncedelay {
+    animation-delay: 1s;
+    -webkit-animation: b2 2s linear infinite;
+    -moz-animation: b2 2s linear infinite;
+    animation: b2 2s linear infinite;
+}
+
 @keyframes b {
     0% {
         transform: translateY(0rem);
@@ -40,6 +47,24 @@
         transform: translateY(-0.5rem);
     }
     20% {
+        transform: translateY(0rem);
+    }
+    100% {
+        transform: translateY(0rem);
+    }
+}
+
+@keyframes b2 {
+    0% {
+        transform: translateY(0rem);
+    }
+    30% {
+        transform: translateY(0rem);
+    }
+    40% {
+        transform: translateY(-0.5rem);
+    }
+    50% {
         transform: translateY(0rem);
     }
     100% {

@@ -10,8 +10,9 @@ import {
 import SendIcon from '@mui/icons-material/Send';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
+import EmojiPeopleIcon from '@mui/icons-material/EmojiPeople';
 
-function Chat({ socket, username, room, setOnlineUsers }) {
+function Chat({ socket, username, room, setOnlineUsers, onlineUsers }) {
   const [currentMessage, setCurrentMessage] = useState("");
   const [messageList, setMessageList] = useState([]);
   const [show, setShow] = useState(true);
@@ -45,7 +46,7 @@ function Chat({ socket, username, room, setOnlineUsers }) {
     socket.on('count', (count) => {
       setOnlineUsers(count);
     });
-  }, [socket]);
+  }, [socket, onlineUsers]);
 
   // function handleToggle() {
   //   set
@@ -60,11 +61,14 @@ function Chat({ socket, username, room, setOnlineUsers }) {
   return (
     <Box className="chat-window" sx={{ pb: '0rem' }}>
       <div className="chat-header" onClick={() => setShow(!show)}>
-        <p>World Chat
+        
+        <div>
+          <Typography sx={{ position: 'absolute', transform: 'translate(-1.2rem, 0.5rem)' }}><EmojiPeopleIcon sx={{ transform: 'translate(0rem, 0.3rem)', fontSize: '1.2rem' }}/>{`${onlineUsers}`}</Typography>
+          World Chat
           {show ? <KeyboardArrowDownIcon sx={{ position: 'absolute', transform: 'translate(4rem, 0.5rem)' }}/>
             : <KeyboardArrowUpIcon sx={{ position: 'absolute', transform: 'translate(4rem, 0.5rem)' }}/>
           }
-        </p>        
+        </div>        
       </div>
       {show &&
       <div className="chat-body">

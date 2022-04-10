@@ -27,7 +27,7 @@ const socket = io();
 //   console.log(`connect_error due to ${err.message}`);
 // });
 
-function User({ setOnlineUsers }) {
+function User({ setOnlineUsers, onlineUsers }) {
 //   console.log("HEERERRER")
 // console.log(socket)
   const [showChat, setShowChat] = useState(false);
@@ -134,7 +134,7 @@ function User({ setOnlineUsers }) {
           <Button sx={styles.button} disabled={username == "" || pin.length != 4 || room == ""} onClick={joinChat}>Start Placing</Button>
         </Box>
       ) : (
-        <Chat socket={socket} username={username} room={room} setOnlineUsers={setOnlineUsers} />        
+        <Chat socket={socket} username={username} room={room} setOnlineUsers={setOnlineUsers} onlineUsers={onlineUsers} />        
       )}
     </Box>
   );
