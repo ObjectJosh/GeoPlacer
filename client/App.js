@@ -34,6 +34,9 @@ function App() {
         '#00FF00',
         '#0000FF',
         '#FFFFFF',
+        '#FFFF00',
+        '#00FFFF',
+        '#FF00FF'
     ]
     const [colorIndex, setColorIndex] = useState(0);
     // const [color, setColor] = useState()
@@ -89,22 +92,19 @@ function App() {
 
     const renderOnlineUsers = () => {
         return (
-            <Box sx={{ display: 'flex', justifyContent: 'right', pb: '0.2rem' }}>
-                <Box sx={{ width: '1rem', height: '1rem', borderRadius: '50%', backgroundColor: '#00c403', transform: 'translate(0rem, 0.3rem)', mr: '0.3rem' }}/>
+            <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+                <Box sx={{ width: '1rem', height: '1rem', borderRadius: '50%', backgroundColor: '#00c403', transform: 'translate(0rem, 0.3rem)', mr: '0.3rem' }} />
                 <Typography>{`${onlineUsers} User${onlineUsers === 1 ? '' : 's'} Currently Online`}</Typography>
             </Box>
         );
     }
-    
+
     const renderLeaderboardItem = (user, index) => {
         return (
             <Box key={index} sx={{ display: 'flex', justifyContent: 'center', flexDirection: 'row', textAlign: 'left' }}>
-                <Box sx={{ width: { xs: '5rem', md: '10rem' }, display: 'flex', flexDirection: 'row', textAlign: 'left'}}>
-                    <Typography variant='body1' >
-                        {`${index + 1}. `}
-                    </Typography>
-                    <Typography variant='body1' sx={{ pl: '0.5rem', fontWeight: '700' }}>
-                        {` ${user.id}`}
+                <Box sx={{ width: { xs: '5rem', md: '10rem' } }}>
+                    <Typography variant='body1' key={index}>
+                        {`${index + 1}. ${user.id}`}
                     </Typography>
                 </Box>
                 <Box sx={{ width: { xs: '5rem', md: '10rem' } }}>
@@ -113,7 +113,7 @@ function App() {
                     </Typography>
                 </Box>
             </Box>
-           
+
         );
     }
 
@@ -140,16 +140,15 @@ function App() {
                         How to play
                     </Typography>
                 </Link> */}
-                {renderOnlineUsers()}
-                <Map squares={squares} selectedColor={colors[colorIndex]} handleGetSquares={handleGetSquares} setPlac={setPlac} plac={plac}/>
+                <Map squares={squares} selectedColor={colors[colorIndex]} handleGetSquares={handleGetSquares} setPlac={setPlac} plac={plac} />
                 <Colors colors={colors} colorIndex={colorIndex} setColorIndex={setColorIndex} />
                 {renderLeaderboard()}
-                <Box sx={{width: '100%', justifyContent: 'center', textAlign: 'center', display: 'flex' }}>
+                <Box sx={{ width: '100%', justifyContent: 'center', textAlign: 'center', display: 'flex' }}>
                     <Typography className='geo' variant='h3' x={{ mb: '1rem', fontSize: '4rem', fontWeight: '800', textAlign: 'center' }}>
                         Geoplacer
                     </Typography>
                 </Box>
-                
+
                 <Box sx={{ position: 'relative', mt: '8rem' }}>
                     <img alt='world' src={earthImage} style={{ position: 'absolute', width: '80%', height: 'auto', transform: 'translate(-50%, -20%)', opacity: 0.8, zIndex: -5 }} />
                     <Typography variant='h4' ref={descriptionRef} sx={{ mb: '1rem', fontWeight: '700' }}>
