@@ -45,7 +45,7 @@ function Colors({ colors, colorIndex, setColorIndex }) {
 
     return (
         <Container sx={{ display: 'flex', flexdirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
-            <Box sx={{ display: 'flex', flexdirection: 'row', backgroundColor: '#4f9c53', p: '1rem', borderRadius: '1rem' }}>
+            <Box sx={{ display: 'flex', flexdirection: 'row', backgroundColor: '#4f9c53', p: '1rem', pr: '2rem', pl: '2rem', borderRadius: '1rem' }}>
                 {colors.map((color, index) => {
                     return renderColorBox(color, index);
                 })}
