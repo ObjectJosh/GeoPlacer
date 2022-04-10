@@ -10,8 +10,6 @@ const { Server } = require("socket.io");
 app.use(cors());
 var count = 0;
 const server = http.createServer(app);
-console.log('SERVER')
-console.log(server)
 
 app.use(express.json({ extended: false }));
 app.use(express.urlencoded({ extended: false }));
@@ -22,6 +20,7 @@ require('./server/database');
 const squares = require('./server/routes/squares');
 app.use('/squares', squares);
 
+// const PATH = 'http://localhost:8080';
 const PATH = 'https://geoplacer.herokuapp.com';
 
 /* Sockets */
