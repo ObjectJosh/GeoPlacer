@@ -14,7 +14,7 @@ app.use((req, res, next) => {
 /* Sockets */
 const http = require("http");
 const cors = require("cors");
-const { Server } = require("socket.io");
+// const { Server } = require("socket.io");
 app.use(cors());
 var count = 0;
 const server = http.createServer(app);
@@ -60,9 +60,11 @@ const server2 = express()
   .use((req, res) => res.sendFile(INDEX, { root: __dirname }))
   .listen(CHATPORT, () => console.log(`Listening on ${CHATPORT}`));
 
-const io = new Server(server2);
+const { Server } = require('ws');
+const wss = new Server({ server });
 
-io.on("connection", (socket) => {
+
+wss.on("connection", (socket) => {
     console.log(`User Connected: ${socket.id}`);
   
     socket.on("join_chat", (data) => {
@@ -83,3 +85,9 @@ io.on("connection", (socket) => {
       socket.emit('count', count);
     });
   });
+
+setInterval(() => {
+wss.clients.forEach((client) => {
+    client.send(new Date().toTimeString());
+});
+}, 1000);
