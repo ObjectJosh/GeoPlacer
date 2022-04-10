@@ -19,12 +19,10 @@ require('./server/database');
 const squares = require('./server/routes/squares');
 app.use('/squares', squares);
 
-const FRONTEND = 'https://geoplacer.herokuapp.com';
-
 /* Sockets */
 const io = new Server(server, {
     cors: {
-      origin: FRONTEND,
+      origin: process.env.FRONTEND_URL || 'http://localhost:8080',
       methods: ["GET", "POST"],
     },
 });
