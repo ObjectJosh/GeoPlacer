@@ -25,3 +25,39 @@
         transform-origin: 50% 0 0;
     }
 }
+
+.move {
+    -webkit-animation: wiggle 2s linear infinite;
+    -moz-animation: wiggle 2s linear infinite;
+    animation: wiggle 2s linear infinite;
+}
+
+@keyframes wiggle {
+    0% {
+        transform: rotate(-8deg);
+    }
+    50% {
+        transform: rotate(8deg);
+    }
+    100% {
+        transform: rotate(-8deg);
+    }
+}
+
+.move2 {
+    -webkit-animation: wiggle2 2s linear infinite;
+    -moz-animation: wiggle2 2s linear infinite;
+    animation: wiggle2 2s linear infinite;
+}
+
+@keyframes wiggle2 {
+    0% {
+        transform: rotate(8deg);
+    }
+    50% {
+        transform: rotate(-8deg);
+    }
+    100% {
+        transform: rotate(8deg);
+    }
+}

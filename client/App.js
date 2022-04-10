@@ -155,13 +155,13 @@ function App() {
                     <Typography variant='body1' sx={{ fontSize: '1.4rem', mb: '2rem', fontWeight: '500' }}>
                         Walk around and color in squares. It's that simple!
                     </Typography>
-                    <Typography variant='body1' sx={{ fontSize: '1.5rem', transform: { xs: 'rotate(-15deg) translateX(0rem)', md: 'rotate(-15deg) translateX(-8rem)' }, mb: { xs: '4rem', md: '2rem' }, color: '#fc9803', fontWeight: '600' }}>
+                    <Typography className='move' variant='body1' sx={{ fontSize: '1.5rem', transform: { xs: 'rotate(-15deg) translateX(0rem)', md: 'rotate(-15deg) translateX(-8rem)' }, mb: { xs: '4rem', md: '2rem' }, color: '#fc9803', fontWeight: '600' }}>
                         Paint a picture with friends!
                     </Typography>
-                    <Typography variant='body1' sx={{ fontSize: '1.5rem', transform: { xs: 'rotate(10deg) translateX(0rem)', md: 'rotate(10deg) translateX(8rem)' }, mb: '4rem', color: '#00de3b', fontWeight: '600' }}>
+                    <Typography className='move2' variant='body1' sx={{ fontSize: '1.5rem', transform: { xs: 'rotate(10deg) translateX(0rem)', md: 'rotate(10deg) translateX(8rem)' }, mb: '4rem', color: '#00de3b', fontWeight: '600' }}>
                         Collaborate with others!
                     </Typography>
-                    <Typography variant='body1' sx={{ fontSize: '1.5rem', transform: { xs: 'rotate(-10deg) translateX(0rem)', md: 'rotate(-10deg) translateX(-3rem)' }, mb: '2rem', color: '#ff3b29', fontWeight: '600' }}>
+                    <Typography className='move' variant='body1' sx={{ fontSize: '1.5rem', transform: { xs: 'rotate(-10deg) translateX(0rem)', md: 'rotate(-10deg) translateX(-3rem)' }, mb: '2rem', color: '#ff3b29', fontWeight: '600' }}>
                         Just have some fun!
                     </Typography>
                 </Box>
