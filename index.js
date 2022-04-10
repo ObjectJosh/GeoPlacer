@@ -82,6 +82,9 @@ io.on("connection", (socket) => {
     console.log(`User Connected: ${socket.id}`);
   
     socket.on("join_chat", (data) => {
+        if (count < 0) {
+            count = 0;
+        }
       socket.join(data);
       console.log(`User with ID: ${socket.id} joined room: ${data}`);
       count++
@@ -96,6 +99,9 @@ io.on("connection", (socket) => {
     socket.on("disconnect", () => {
       console.log("User Disconnected", socket.id);
       count--;
+      if (count < 0) {
+          count = 0;
+      }
       socket.emit('count', count);
     });
   });
