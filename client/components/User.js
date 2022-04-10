@@ -85,22 +85,25 @@ function User({ setOnlineUsers }) {
       verticalAlign: 'top',
     },
     container: {
-      position: 'fixed',
-      display: 'flex',
-      justifyContent: 'flex-end',
-      align: 'right',
+      mt: { xs: '5rem', md: '0rem' },
+      position: { xs: 'relative', md: 'fixed' },
+      // display: { xs: 'inline-block', md: 'flex' },
+      justifyContent: { xs: 'flex-center', md: 'flex-end' },
+      align: { xs: 'center', md: 'right' },
       bottom: 10,
       right: 10,
       overflow: 'hidden',
       backgroundColor: 'none',
+    },
+    joinChatContainer: {
+      display: 'flex', justifyContent: 'center', alignItems: 'center', width: '20rem', pb: '4rem', backgroundColor: 'none', borderRadius: '2rem', border: 2, mt: '3rem'
     }
-
   }
 
   return (
-    <Box className="ChatApp" style={!showChat ? styles.login : styles.container}>
+    <Box className="ChatApp" sx={!showChat ? styles.login : styles.container}>
       {!showChat ? (
-        <Box className="joinChatContainer" sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', width: '20rem', pb: '4rem', backgroundColor: 'none', borderRadius: '2rem', border: 2, mt: '3rem' }}>
+        <Box className="joinChatContainer" sx={styles.joinChatContainer}>
           <h3>Log in</h3>
           <input
             type="text"

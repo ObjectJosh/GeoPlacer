@@ -8,10 +8,14 @@ import {
   Link,
 } from '@mui/material';
 import SendIcon from '@mui/icons-material/Send';
+import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
+import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 
 function Chat({ socket, username, room, setOnlineUsers }) {
   const [currentMessage, setCurrentMessage] = useState("");
   const [messageList, setMessageList] = useState([]);
+  const [show, setShow] = useState(true);
+
 
   const sendMessage = async () => {
     if (currentMessage !== "") {
@@ -44,6 +48,10 @@ function Chat({ socket, username, room, setOnlineUsers }) {
     });
   }, [socket]);
 
+  // function handleToggle() {
+  //   set
+  // }
+
   const styles = {
     container: {
       position: 'absolute',
@@ -52,11 +60,15 @@ function Chat({ socket, username, room, setOnlineUsers }) {
 
   return (
     <Box className="chat-window" sx={{ pb: '1rem' }}>
-      <div className="chat-header">
-        <p>World Chat</p>
+      <div className="chat-header" onClick={() => setShow(!show)}>
+        <p>World Chat
+          {show ? <KeyboardArrowDownIcon sx={{ position: 'absolute', transform: 'translate(4rem, 0.5rem)' }}/>
+            : <KeyboardArrowUpIcon sx={{ position: 'absolute', transform: 'translate(4rem, 0.5rem)' }}/>
+          }
+        </p>        
       </div>
+      {show &&
       <div className="chat-body">
-
         <ScrollToBottom className="message-container">
           {messageList.map((messageContent, index) => {
             return (
@@ -79,7 +91,7 @@ function Chat({ socket, username, room, setOnlineUsers }) {
           })}
         </ScrollToBottom>
 
-      </div>
+      </div>}
 
       <Box className="chat-footer" sx={{ backgroundColor: 'white' }}>
         <input
