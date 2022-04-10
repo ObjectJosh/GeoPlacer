@@ -228,9 +228,21 @@ function MyMapComponent({ squares, selectedColor, handleGetSquares, plac, setPla
     }, [position]);
 
     const styles = {
-        redbutton: {
+        btn: {
+            mt: '2rem',
             width: '15rem',
-            color: "#FF0000"
+            backgroundColor: '#43a047',
+            color: 'white',
+            borderRadius: '3rem',
+            fontSize: '1.2rem',
+            textTransform: 'none',
+            pt: '1rem',
+            pb: '1rem',
+            mb: '1.5rem',
+            '&:hover': {
+                backgroundColor: '#37873b'
+            }
+            // color: "#FF0000"
         }
 
     }
@@ -239,13 +251,14 @@ function MyMapComponent({ squares, selectedColor, handleGetSquares, plac, setPla
         <>
             <div ref={ref} style={{ width: "100%", height: "100%" }} />
             {!map ? <Typography sx={{ color: "#FF0000", fontSize: 32 }}>Please Enable Location Services</Typography> : null}
-            <Box sx={{ display: 'flex', flexDirection: 'row' }}>
-                <Button variant='outlined' sx={styles.redbutton} onClick={() => handleAddSquare()} disabled={!inRange}>Add Square</Button>
-                {/* <Box sx={{ flexGrow: 1 }} /> */}
-                <Box sx={{ width: '40%' }}>
+            <Box sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
+                <Box sx={{ width: '40%', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
                     <Slider sx={{ width: '20rem' }} defaultValue={50} valueLabelDisplay="auto" onChange={(event, value) => { changeSquareArrOpacity(value / 100) }} />
-                    <FormControlLabel sx={{ width: '20rem' }} control={<Switch defaultChecked />} label="Show Borders" onChange={(event, value) => { showSquareArrBorders(value) }} />
+                    <FormControlLabel multiline={false} control={<Switch defaultChecked />} label="Show Borders" onChange={(event, value) => { showSquareArrBorders(value) }} />
                 </Box>
+                <Button variant='outlined' sx={styles.btn} onClick={() => handleAddSquare()} disabled={!inRange}>{inRange ? 'Add Square' : 'Not in Range'}</Button>
+                {/* <Box sx={{ flexGrow: 1 }} /> */}
+
             </Box>
         </>
     );

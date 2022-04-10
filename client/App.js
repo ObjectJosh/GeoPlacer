@@ -167,13 +167,13 @@ function App() {
                 </Box>
                 <Box sx={{ mt: { sm: '10rem', md: '25rem' } }}></Box>
                 <Typography variant='body2' sx={{ mt: '10rem', fontSize: '1rem', fontWeight: '600' }}>
-                    Built for your enjoyment by
+                    🔨 Built for your enjoyment by
                 </Typography>
                 <Typography variant='body2' sx={{ mt: '0.5rem' }}>
                     Josh Wong, Christian Honenin, Wesley Luu & Wilson Szeto
                 </Typography>
                 <Typography variant='body2' sx={{ mt: '2rem', fontSize: '1rem', fontWeight: '600' }}>
-                    Inspired by
+                    🌟 Inspired by
                 </Typography>
                 <Link onClick={() => window.open('https://www.reddit.com/r/place/')}>
                     <Typography variant='body2' sx={{ mt: '0.5rem' }} >
@@ -189,7 +189,7 @@ function App() {
         <Container sx={styles.mainContainer}>
             <Typography variant='h2' sx={styles.header}>Welcome to GeoPlacer</Typography>
             {currentUser && <Typography variant='h5' sx={{ mb: '0rem', fontWeight: '700', fontSize: '2rem' }}>{`Hello, ${currentUser.id}!`}</Typography>}
-            {currentUser && <Typography variant='h5' sx={{ mb: '2rem' }}>{`Explore around the GeoWorld`}</Typography>}
+            {currentUser && <Typography variant='h5' sx={{ mb: '2rem' }}>{`Explore around the ${'🌎'} GeoWorld`}</Typography>}
             {/* {renderBody()} */}
             {displayChat ? renderBody() : null}
             {renderLogin()}

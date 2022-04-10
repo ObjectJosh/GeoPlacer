@@ -72,6 +72,7 @@ function User({ setOnlineUsers }) {
       backgroundColor: (username == "" || pin?.length != 4 || room == "" ? '#d9d9d9' : '#43a047'),
       color: '#fff',
       cursor: 'pointer',
+      textTransform: 'none'
     },
     login: {
       // position: 'fixed',
@@ -86,11 +87,11 @@ function User({ setOnlineUsers }) {
     },
     container: {
       mt: { xs: '5rem', md: '0rem' },
-      position: { xs: 'relative', md: 'fixed' },
+      position: { xs: 'fixed', md: 'fixed' },
       // display: { xs: 'inline-block', md: 'flex' },
       justifyContent: { xs: 'flex-center', md: 'flex-end' },
       align: { xs: 'center', md: 'right' },
-      bottom: 10,
+      bottom: 0,
       right: 10,
       overflow: 'hidden',
       backgroundColor: 'none',

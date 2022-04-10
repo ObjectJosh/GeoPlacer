@@ -43,7 +43,6 @@ function Chat({ socket, username, room, setOnlineUsers }) {
 
   useEffect(() => {
     socket.on('count', (count) => {
-      console.log(count)
       setOnlineUsers(count);
     });
   }, [socket]);
@@ -59,7 +58,7 @@ function Chat({ socket, username, room, setOnlineUsers }) {
   }
 
   return (
-    <Box className="chat-window" sx={{ pb: '1rem' }}>
+    <Box className="chat-window" sx={{ pb: '0rem' }}>
       <div className="chat-header" onClick={() => setShow(!show)}>
         <p>World Chat
           {show ? <KeyboardArrowDownIcon sx={{ position: 'absolute', transform: 'translate(4rem, 0.5rem)' }}/>
