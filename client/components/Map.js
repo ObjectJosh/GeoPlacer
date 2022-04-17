@@ -175,7 +175,7 @@ function MyMapComponent({ squares, selectedColor, handleGetSquares, plac, setPla
         if (ref.current && !map && position) {
             setMap(new window.google.maps.Map(ref.current,
                 {
-                    center: { lat: position?.latitude, lng: position?.longitude },
+                    center: { lat: TOPLEFT_LAT - (GRID_DIM/2)*SQUARE_DIM, lng: TOPLEFT_LONG + (GRID_DIM/2)*SQUARE_DIM },
                     zoom: 16,
                     mapTypeId: 'satellite'
                 }));
